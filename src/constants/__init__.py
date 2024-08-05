@@ -17,7 +17,7 @@ RAW_RECIPES_PATH: str = "data/raw/recipes_info.xlsx"
 #####################################
 PROCESSED_DATA_DIR: str = "data/processed"
 
-PROCESSED_RECIPES_PATH: str = "data/processed/recipes_info.csv"
+PROCESSED_RECIPES_PATH: str = "data/processed/recipes_ingredients.xlsx"
 
 
 MEASUREMENT_UNITS: list = [
