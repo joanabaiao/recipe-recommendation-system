@@ -7,8 +7,8 @@ import time
 import os
 import pickle
 
-from utils.recipe_scraper_class import RecipeScraper
-from constants import *
+from recipe_scraper_class import RecipeScraper
+from src.constants import *
 
 
 def get_recipes_details(recipe_urls):

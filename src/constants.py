@@ -11,15 +11,20 @@ HTML_DIR: str = "data/html_pages"
 URLS_PATH: str = "data/raw/recipe_urls.csv"
 RAW_RECIPES_PATH: str = "data/raw/recipes_info.xlsx"
 
-
 #####################################
 # PROCESSING
 #####################################
 PROCESSED_DATA_DIR: str = "data/processed"
-
 PROCESSED_RECIPES_PATH: str = "data/processed/recipes_ingredients.xlsx"
 
+#####################################
+# MODELS
+#####################################
+TDIDF_MODEL_PATH: str = "models/tfidf_vectorizer.pkl"
+TDIDF_MATRIX_PATH: str = "models/tfidf_matrix.pkl"
 
+
+#####################################
 MEASUREMENT_UNITS: list = [
     "teaspoon",
     "t",

@@ -1,15 +1,18 @@
+import ssl
+ssl._create_default_https_context = ssl._create_unverified_context
+
 import re
 from nltk.tokenize import word_tokenize
 import pandas as pd
 import ast
-from constants import *
-
 import nltk
 from nltk.corpus import stopwords
 
 from nltk.stem import WordNetLemmatizer
 from nltk.corpus import wordnet
 from collections import Counter
+
+from src.constants import *
 
 nltk.download("stopwords")
 stop_words = set(stopwords.words("english"))
@@ -18,7 +21,10 @@ lemmatizer = WordNetLemmatizer()
 
 def get_ingredient_names(ingredients_list):
     ingredient_names = []
-    ingredients_list = ast.literal_eval(ingredients_list)
+    ingredient_names_str = ""
+    
+    if not isinstance(ingredients_list, list):
+        ingredients_list = ast.literal_eval(ingredients_list)
 
     for item in ingredients_list:
 
@@ -40,8 +46,9 @@ def get_ingredient_names(ingredients_list):
         if filtered_tokens:
             ingredient = " ".join(filtered_tokens)
             ingredient_names.append(ingredient.strip())
+            ingredient_names_str = ingredient_names_str + ingredient.strip() + " "
 
-    return ingredient_names
+    return ingredient_names, ingredient_names_str
 
 
 ################################################################
@@ -52,8 +59,8 @@ def main():
     df_recipes = pd.read_excel(RAW_RECIPES_PATH)
     df_recipes.dropna(subset=["Ingredients"], inplace=True)
 
-    df_recipes["Ingredients_processed"] = df_recipes["Ingredients"].apply(
-        lambda x: get_ingredient_names(x)
+    df_recipes[['Ingredients_processed', 'Ingredients_processed_str']] = df_recipes['Ingredients'].apply(
+            lambda x: pd.Series(get_ingredient_names(x))
     )
 
     df_recipes.to_excel(PROCESSED_RECIPES_PATH, index=False)
