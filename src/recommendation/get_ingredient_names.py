@@ -15,6 +15,10 @@ from collections import Counter
 from src.constants import *
 
 nltk.download("stopwords")
+nltk.download('punkt')
+nltk.download("punkt_tab")
+nltk.download('wordnet')
+
 stop_words = set(stopwords.words("english"))
 lemmatizer = WordNetLemmatizer()
 
