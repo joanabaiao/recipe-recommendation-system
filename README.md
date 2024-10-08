@@ -62,4 +62,19 @@ I used Streamlit to deploy the recipe recommendation system as a web application
 
 In the app, the users enter their the ingredients and the number of recipes they want to see, and the system recommends the most relevant recipes. The app shows detailed information such as the recipe name, a link to the full recipe, ingredients, cooking time, difficulty, and serving size.
 
-<img src="./docs/app-image.png" alt="App" width="70%"/>
+<img src="./docs/app-image.png" alt="App" width="65%"/>
+
+## Conclusion
+
+In summary, I developed this recipe recommendation system to make meal planning easier, while exploring NLP techniques and improving my skills as a data scientist.
+
+The next steps to improve this project include:
+
+- **Expand recipe sources** Include recipes from more websites to diversify the dataset and provide users with a wider range of options.
+- **Upgrade Embeddings:** Replace the current TF-IDF model with Word2Vec to capture more meaningful relationships between words in the recipes.
+- **Improve Text Processing:** Refine the text processing methods to ensure cleaner data for better results with the new embeddings.
+- **Add more features:** Include additional recipe details (for example, cuisine type) to improve the quality of the recommendations.
+
+These changes will help make the recommendations more accurate and personalized.
+
+Thank you for taking the time to check out my project! I’d love to hear any feedback or suggestions you might have 😃
