@@ -6,8 +6,6 @@ This project is a recipe recommendation system that provides recipe suggestions 
 
 **Tools**: BeautifulSoup, Selenium, Scikit-learn (TF-IDF Vectorizer), Pandas, NLTK, Streamlit
 
-<img src="./docs/app.png" alt="App" width="60%"/>
-
 ## Steps
 
 ### 1. Web scraping
@@ -60,4 +58,4 @@ I used Streamlit to deploy the recipe recommendation system as a web application
 
 In the app, the users enter their the ingredients and the number of recipes they want to see, and the system recommends the most relevant recipes. The app shows detailed information such as the recipe name, a link to the full recipe, ingredients, cooking time, difficulty, and serving size.
 
-<img src="./docs/app.png" alt="App" width="70%"/>
+<img src="./docs/app-image.png" alt="App" width="70%"/>
