@@ -2,6 +2,7 @@ import streamlit as st
 import ast
 from PIL import Image
 import re
+import pandas as pd
 from nltk.stem import WordNetLemmatizer
 
 from src.recommendation.get_top_recipes import get_top_recipes
@@ -89,14 +90,16 @@ if st.button("Recommend recipes"):
                         st.markdown(f"**Ingredients:**\n{ingredients_bullets}")
 
                         # Display additional information
-                        if row["Serves"]:
+                        if pd.notna(row["Serves"]) and row["Serves"].strip():
                             servings = re.search(
                                 r"(serves|makes)\s+(\d+)", row["Serves"], re.IGNORECASE
                             ).group(2)
                             st.write(f"**Servings:** {servings}")
 
-                        if row["Cooking time"]:
-
+                        if (
+                            pd.notna(row["Cooking time"])
+                            and row["Cooking time"].strip()
+                        ):
                             time_str = re.sub(
                                 r"(\d+)\s*hr", r"\1 hour", row["Cooking time"]
                             )
@@ -104,7 +107,7 @@ if st.button("Recommend recipes"):
 
                             st.write(f"**Cooking time:** {time_str}")
 
-                        if row["Difficulty"]:
+                        if pd.notna(row["Difficulty"]) and row["Difficulty"].strip():
                             st.write(
                                 f"**Difficulty:** {row['Difficulty'].capitalize()}"
                             )
