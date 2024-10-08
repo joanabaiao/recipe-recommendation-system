@@ -23,6 +23,7 @@ def get_top_recipes(ingredients, n_recipes=5):
     top_recipes = df_recipes.sort_values(by="Cosine Similarity", ascending=False).head(
         n_recipes
     )
+    top_recipes = top_recipes[top_recipes["Cosine Similarity"] > 0]
 
     return top_recipes
 
@@ -31,7 +32,7 @@ def get_top_recipes(ingredients, n_recipes=5):
 
 
 if __name__ == "__main__":
-    test_ingredients = ["pasta", "tomato", "onion", "eggs", "cheese"]
+    test_ingredients = ["codfish"]
     n = 5
 
     top_recipes = get_top_recipes(test_ingredients, n)

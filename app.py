@@ -25,7 +25,13 @@ if st.button("Recommend recipes"):
             ]
             top_recipes = get_top_recipes(ingredients_list, n_recipes=int(num_recipes))
 
-            if not top_recipes.empty:
+            if top_recipes.empty:
+                st.subheader("No recipes found")
+                st.write(
+                    "Sorry, we couldn't find any recipes that match your ingredients."
+                )
+
+            else:
                 st.subheader("Recommended Recipes:")
                 for i, (index, row) in enumerate(top_recipes.iterrows(), start=1):
 
@@ -72,10 +78,12 @@ if st.button("Recommend recipes"):
 
                     with col2:
                         if row["Image URL"]:
-                            st.image(row["Image URL"], use_column_width=True)
+                            try:
+                                st.image(row["Image URL"], use_column_width=True)
+                            except Exception as e:
+                                print(f"Error displaying image: {e}")
 
                     st.write("---")
-            else:
-                st.write("No recipes found with the given ingredients.")
+
     else:
         st.warning("Please enter some ingredients.")
