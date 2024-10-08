@@ -6,6 +6,8 @@ This project is a recipe recommendation system that provides recipe suggestions 
 
 **Tools**: BeautifulSoup, Selenium, Scikit-learn (TF-IDF Vectorizer), Pandas, NLTK, Streamlit
 
+https://github.com/user-attachments/assets/55e664f9-1cec-4228-87ae-f891e18ffd0b
+
 ## Steps
 
 ### 1. Web scraping
