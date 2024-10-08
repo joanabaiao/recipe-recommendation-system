@@ -2,8 +2,37 @@ import streamlit as st
 import ast
 from PIL import Image
 import re
+from nltk.stem import WordNetLemmatizer
+
 from src.recommendation.get_top_recipes import get_top_recipes
 from src.recommendation.get_ingredient_names import get_ingredient_names
+
+lemmatizer = WordNetLemmatizer()
+
+
+def ingredients_to_bold(ingredients_list, recipe_ingredients, lemmatizer):
+
+    ingredients_list_words = [lemmatizer.lemmatize(word) for word in ingredients_list]
+    recipe_ingredients_words = [
+        [lemmatizer.lemmatize(word) for word in ingredient.split(" ")]
+        for ingredient in recipe_ingredients
+    ]
+    recipe_ingredients_bold = []
+    for count, recipe_ing in enumerate(recipe_ingredients_words):
+        ing_input = False
+        for input_ing in ingredients_list_words:
+            if input_ing in recipe_ing:
+                ing_input = True
+
+        if ing_input:
+            recipe_ingredients_bold.append(f"**{recipe_ingredients[count]}**")
+        else:
+            recipe_ingredients_bold.append(recipe_ingredients[count])
+
+    return recipe_ingredients_bold
+
+
+################################################################################################
 
 # Display the image
 image1 = Image.open("docs/recipe.jpg")
@@ -50,8 +79,12 @@ if st.button("Recommend recipes"):
                         if not isinstance(recipe_ingredients, list):
                             recipe_ingredients = ast.literal_eval(recipe_ingredients)
 
+                        recipe_ingredients_bold = ingredients_to_bold(
+                            ingredients_list, recipe_ingredients, lemmatizer
+                        )
+
                         ingredients_bullets = "\n".join(
-                            f"- {ingredient}" for ingredient in recipe_ingredients
+                            f"- {ingredient}" for ingredient in recipe_ingredients_bold
                         )  # Create bullet points
                         st.markdown(f"**Ingredients:**\n{ingredients_bullets}")
 
